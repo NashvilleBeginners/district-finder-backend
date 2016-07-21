@@ -25,4 +25,12 @@ config :district_finder_backend, DistrictFinder.Endpoint,
     rewrite_on: [:x_forwarded_proto],
     host: "districts.reax.io:443"
   ]
+
+config :district_finder_backend, DistrictFinder.Endpoint, server: true
+#
+# You will also need to set the application root to `.` in order
+# for the new static assets to be served after a hot upgrade:
+#
+config :district_finder_backend, DistrictFinder.Endpoint, root: "."
+
 import_config "prod.secret.exs"

@@ -3,7 +3,7 @@ defmodule DistrictFinder.Mixfile do
 
   def project do
     [app: :district_finder_backend,
-     version: append_revision("0.0.1"),
+     version: "0.0.1",
      elixir: "~> 1.2",
      elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:phoenix, :gettext] ++ Mix.compilers,
