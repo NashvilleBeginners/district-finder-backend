@@ -1,7 +1,7 @@
-defmodule DistrictFinder.DistrictControllerTest do
+defmodule DistrictFinder.NeighborhoodControllerTest do
   use DistrictFinder.ConnCase
 
-  alias DistrictFinder.District
+  alias DistrictFinder.Neighborhood
   @valid_attrs %{}
   @invalid_attrs %{}
 
@@ -10,50 +10,50 @@ defmodule DistrictFinder.DistrictControllerTest do
   end
 
   test "lists all entries on index", %{conn: conn} do
-    conn = get conn, district_path(conn, :index)
+    conn = get conn, neighborhood_path(conn, :index)
     assert json_response(conn, 200)["data"] == []
   end
 
   test "shows chosen resource", %{conn: conn} do
-    district = Repo.insert! %District{}
-    conn = get conn, district_path(conn, :show, district)
-    assert json_response(conn, 200)["data"] == %{"id" => district.id}
+    neighborhood = Repo.insert! %Neighborhood{}
+    conn = get conn, neighborhood_path(conn, :show, neighborhood)
+    assert json_response(conn, 200)["data"] == %{"id" => neighborhood.id}
   end
 
   test "renders page not found when id is nonexistent", %{conn: conn} do
     assert_error_sent 404, fn ->
-      get conn, district_path(conn, :show, -1)
+      get conn, neighborhood_path(conn, :show, -1)
     end
   end
 
   test "creates and renders resource when data is valid", %{conn: conn} do
-    conn = post conn, district_path(conn, :create), district: @valid_attrs
+    conn = post conn, neighborhood_path(conn, :create), neighborhood: @valid_attrs
     assert json_response(conn, 201)["data"]["id"]
-    assert Repo.get_by(District, @valid_attrs)
+    assert Repo.get_by(Neighborhood, @valid_attrs)
   end
 
   test "does not create resource and renders errors when data is invalid", %{conn: conn} do
-    conn = post conn, district_path(conn, :create), district: @invalid_attrs
+    conn = post conn, neighborhood_path(conn, :create), neighborhood: @invalid_attrs
     assert json_response(conn, 422)["errors"] != %{}
   end
 
   test "updates and renders chosen resource when data is valid", %{conn: conn} do
-    district = Repo.insert! %District{}
-    conn = put conn, district_path(conn, :update, district), district: @valid_attrs
+    neighborhood = Repo.insert! %Neighborhood{}
+    conn = put conn, neighborhood_path(conn, :update, neighborhood), neighborhood: @valid_attrs
     assert json_response(conn, 200)["data"]["id"]
-    assert Repo.get_by(District, @valid_attrs)
+    assert Repo.get_by(Neighborhood, @valid_attrs)
   end
 
   test "does not update chosen resource and renders errors when data is invalid", %{conn: conn} do
-    district = Repo.insert! %District{}
-    conn = put conn, district_path(conn, :update, district), district: @invalid_attrs
+    neighborhood = Repo.insert! %Neighborhood{}
+    conn = put conn, neighborhood_path(conn, :update, neighborhood), neighborhood: @invalid_attrs
     assert json_response(conn, 422)["errors"] != %{}
   end
 
   test "deletes chosen resource", %{conn: conn} do
-    district = Repo.insert! %District{}
-    conn = delete conn, district_path(conn, :delete, district)
+    neighborhood = Repo.insert! %Neighborhood{}
+    conn = delete conn, neighborhood_path(conn, :delete, neighborhood)
     assert response(conn, 204)
-    refute Repo.get(District, district.id)
+    refute Repo.get(Neighborhood, neighborhood.id)
   end
 end

@@ -1,7 +1,7 @@
-defmodule DistrictFinder.District do
+defmodule DistrictFinder.Neighborhood do
   use DistrictFinder.Web, :model
 
-  schema "districts" do
+  schema "neighborhoods" do
 
     timestamps()
   end

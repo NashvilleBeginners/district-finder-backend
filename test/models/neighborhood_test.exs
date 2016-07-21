@@ -1,18 +1,18 @@
-defmodule DistrictFinder.DistrictTest do
+defmodule DistrictFinder.NeighborhoodTest do
   use DistrictFinder.ModelCase
 
-  alias DistrictFinder.District
+  alias DistrictFinder.Neighborhood
 
   @valid_attrs %{}
   @invalid_attrs %{}
 
   test "changeset with valid attributes" do
-    changeset = District.changeset(%District{}, @valid_attrs)
+    changeset = Neighborhood.changeset(%Neighborhood{}, @valid_attrs)
     assert changeset.valid?
   end
 
   test "changeset with invalid attributes" do
-    changeset = District.changeset(%District{}, @invalid_attrs)
+    changeset = Neighborhood.changeset(%Neighborhood{}, @invalid_attrs)
     refute changeset.valid?
   end
 end
