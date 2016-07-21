@@ -12,7 +12,7 @@ STAGING_HOSTS="districts-staging.reax.io" # staging / test hosts separated by sp
 STAGING_USER="test" # local user at staging hosts
 TEST_AT="/test/districts" # deploy directory on staging hosts. default is DELIVER_TO
 
-PRODUCTION_HOSTS="districts.reax.io" # deploy / production hosts separated by space
+PRODUCTION_HOSTS="52.203.221.247" # deploy / production hosts separated by space
 PRODUCTION_USER="districts-app" # local user at deploy hosts
 DELIVER_TO="/opt/districts" # deploy directory on production hosts
 
@@ -27,8 +27,6 @@ pre_erlang_get_and_update_deps() {
     status "Copying '$_local_secret_config_file' file to build host"
     scp "$_local_secret_config_file" "$BUILD_USER@$BUILD_HOST:$BUILD_AT/$APP/config/prod.secret.exs"
   fi
-
-  # [[ "$APP" = "hbp_parser" ]] && restore_build_directory
 }
 
 pre_erlang_clean_compile() {
