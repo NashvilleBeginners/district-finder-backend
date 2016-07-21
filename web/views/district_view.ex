@@ -14,7 +14,7 @@ defmodule DistrictFinder.DistrictView do
       position: data.position,
       address: data.address,
       city: data.city,
-      zip: data.zip
+      zip: data.zip,
       email: data.email,
       business_phone: data.bus_phone,
       home_phone: data.res_phone
