@@ -23,7 +23,10 @@ defmodule DistrictFinder.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", DistrictFinder do
-  #   pipe_through :api
-  # end
+  scope "/api", DistrictFinder do
+    pipe_through :api
+
+    resources "/districts", DistrictController, only: [:index]
+    resources "/neighborhoods", NeighborhoodController, only: [:index]
+  end
 end
