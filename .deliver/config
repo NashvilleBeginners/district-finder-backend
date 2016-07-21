@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
-APP="districts" # name of your release
+APP="district_finder_backend" # name of your release
 
 BUILD_HOST="build.reax.io" # host where to build the release
 BUILD_USER="build" # local user at build host
-BUILD_AT="/builds/" # build directory on build host
-RELEASE_DIR="$BUILD_AT/$APP"
+BUILD_AT="/builds/districts" # build directory on build host
+RELEASE_DIR="$BUILD_AT"
 RELEASE_STORE="s3://AKIAI2CSQENKOFJAPRCA@rW0/O7eSJH36Yw95p4KxZZX8SnnZV5q5inb/EfYh:reax"
 
 STAGING_HOSTS="districts-staging.reax.io" # staging / test hosts separated by space
@@ -22,10 +22,10 @@ AUTO_VERSION="commit-count+git-revision+branch"
 
 pre_erlang_get_and_update_deps() {
   # copy it from the local machine to the build host when builing
-  local _local_secret_config_file="apps/$APP/config/prod.secret.exs"
+  local _local_secret_config_file="./config/prod.secret.exs"
   if [ "$TARGET_MIX_ENV" = "prod" ]; then
     status "Copying '$_local_secret_config_file' file to build host"
-    scp "$_local_secret_config_file" "$BUILD_USER@$BUILD_HOST:$BUILD_AT/$APP/config/prod.secret.exs"
+    scp "$_local_secret_config_file" "$BUILD_USER@$BUILD_HOST:$BUILD_AT/config/prod.secret.exs"
   fi
 }
 
@@ -39,7 +39,7 @@ pre_erlang_clean_compile() {
     set -e
 
     # enter the build directory on the build host (required)
-    cd '$BUILD_AT/$APP'
+    cd '$BUILD_AT'
 
     mkdir -p priv/static # required by the phoenix.digest task
 
